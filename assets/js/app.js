@@ -2,6 +2,8 @@
 // setup the interface
 $(document).ready(function() {
 
+    $('.ttip').tooltip();
+
 	$("#peek-link, #format-switch").live("click", function() {
 		showPeekData($(this));
 		return false;
@@ -60,6 +62,23 @@ $(document).ready(function() {
         $('#myModal').modal('show');
 
         $.post(base_url+"users/lookup", {  resource: resource, lookup_name: lookup_name }, function(data) {
+            setTimeout(function () {
+                $("#myModal .modal-body").html(data);
+            }, 100);
+        });
+        return false;
+	});
+
+    $("#object-popup").live("click", function(e) {
+        e.preventDefault();
+
+        loading();
+        var resource = $(this).data("resource");
+
+        $('.modal-header h3').text(resource+' Object Values');
+        $('#myModal').modal('show');
+
+        $.post(base_url+"users/object", {  resource: resource }, function(data) {
             setTimeout(function () {
                 $("#myModal .modal-body").html(data);
             }, 100);

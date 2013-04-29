@@ -5,7 +5,7 @@
                 <li><b>Class</b> : <?=$class?></li>
                 <li><b># of Fields</b> : <?=count($fields)?></li>
                 <li><b>Key Field</b> : <?=$KeyField?></li>
-                <li><b>Object Types</b> : <a href="#object" id="object-popup" data-resource="<?=$resource?>" title="View available media/object types for the '<?=$resource?>' resource">View Media Object</a></li>
+                <li><b>Object Types</b> : <a href="#object" id="object-popup" class="ttip" data-resource="<?=$resource?>" title="View available media/object types for the '<?=$resource?>' resource">View Media Object</a></li>
                
             </ul>
             

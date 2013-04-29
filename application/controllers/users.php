@@ -80,6 +80,21 @@ class Users extends MY_Controller
         $this->load->view('_ajax',$this->data);
     }
 
+    public function object(){
+        if (!$this->session->userdata('logged_in')) {
+            redirect('login');
+        }
+
+        $resource = $this->input->post('resource');
+        $this->retsLogin($this->session->userdata('url'),$this->session->userdata('username'),$this->session->userdata('password'));
+        $values = $this->rets->GetMetadataObjects($resource);
+        $this->rets->Disconnect();
+        $this->data['content'] = 'object';
+        $this->data['values'] = $values;
+        $this->load->view('_ajax',$this->data);
+
+    }
+
     public function export($resource,$class){
         $fields_to_export = array('SystemName', 'StandardName', 'LongName', 'DBName',
             'ShortName', 'MaximumLength', 'DataType', 'Precision',
